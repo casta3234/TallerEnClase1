@@ -23,21 +23,26 @@ public class Venta {
     private double valorVenta;
 
     public Venta(Producto producto, Vendedor vendedor, DetallesVenta detallesVenta, Date fecha) {
-        this.producto = producto;
-        this.vendedor = vendedor;
-        this.detallesVenta = detallesVenta;
-        this.fecha = fecha;
-        this.valorVenta = (this.producto.getPrecioUnidad() * this.detallesVenta.getUnidadesVendidas());
-        imprimirFactura();
+        if (this.producto == null) {
+            System.out.println("el codigo no existe venta no valida");
+        } else {
+            this.producto = producto;
+            this.vendedor = vendedor;
+            this.detallesVenta = detallesVenta;
+            this.fecha = fecha;
+            this.valorVenta = (this.producto.getPrecioUnidad() * this.detallesVenta.getUnidadesVendidas());
+            imprimirFactura();
+        }
     }
 
     public void imprimirFactura() {
-        System.out.println("año: " + this.fecha.getYear() + "mes: " + this.fecha.getMonth()
-                + "dia: " + this.fecha.getDay() + "hora: " + this.fecha.getHours());
+        System.out.println("año:" + this.fecha.getYear() + " mes:" + this.fecha.getMonth()
+                + " dia:" + this.fecha.getDay() + " hora:" + this.fecha.getHours());
         System.out.println("Vendedor: " + this.vendedor.getNombre() + " " + this.vendedor.getApellido()
-                + "ID: " + this.vendedor.getId());
-        System.out.println("codigo del producto: " + this.producto.getCodigo() + "catidad vendida: "
-                + this.detallesVenta.getUnidadesVendidas() + "valor total: " + this.valorVenta);
+                + " ID: " + this.vendedor.getId());
+        System.out.println("codigo del producto: " + this.producto.getCodigo() + " nombre del producto: " + this.producto.getDescripcion()
+                + " precio del product: " + this.producto.getPrecioUnidad() + " catidad vendida: " + this.detallesVenta.getUnidadesVendidas()
+                + " valor total: " + this.valorVenta);
         switch (this.detallesVenta.getFormaDeVenta()) {
             case 0:
                 System.out.println("se pago con efectivo");

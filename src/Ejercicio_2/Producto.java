@@ -48,4 +48,12 @@ public class Producto {
         this.precioUnidad = precioUnidad;
     }
 
+    public Producto getProducto(Producto[] producto, int codigo) {
+        for (int i = 0; producto[i] != null; i++) {
+            if (producto[i].getCodigo() == codigo) {
+                return producto[i];
+            }
+        }
+        return null;
+    }
 }
